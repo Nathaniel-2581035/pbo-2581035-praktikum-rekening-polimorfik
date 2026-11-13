@@ -1,4 +1,4 @@
-public class Rekening {
+public abstract class Rekening {
     private String nomor;
     private String pemilik;
     protected int saldo;
@@ -9,8 +9,24 @@ public class Rekening {
         this.saldo = saldo;
     }
 
+    public String getNomor() {
+        return nomor;
+    }
+
+    public String getPemilik() {
+        return pemilik;
+    }
+
     public int getSaldo() {
         return saldo;
+    }
+
+    public abstract int biayaAdminBulanan();
+
+    public int potongBiayaAdmin() {
+        int biaya = biayaAdminBulanan();
+        saldo = saldo - biaya;
+        return biaya;
     }
 
     public boolean setor(int jumlah) {
@@ -48,5 +64,3 @@ public class Rekening {
         return (negatif ? "-Rp" : "Rp") + hasil;
     }
 }
-
-
